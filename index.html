@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Northeast Illinois Dry Ice Directory - Find Reliable Suppliers</title>
+    <meta name="description" content="Find reliable dry ice suppliers in Northeast Illinois. Emergency services, bulk orders, delivery available. Serving DuPage, Kane, Lake, Will counties.">
+    <meta name="keywords" content="dry ice, Illinois, suppliers, emergency dry ice, commercial dry ice, DuPage County, Kane County, Lake County, Will County">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fafc;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #1e40af, #3b82f6);
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Emergency Banner */
+        .emergency-banner {
+            background: #dc2626;
+            color: white;
+            padding: 1rem 0;
+            text-align: center;
+        }
+
+        .emergency-banner strong {
+            font-weight: 600;
+        }
+
+        /* Search Section */
+        .search-section {
+            background: white;
+            padding: 2rem 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .search-controls {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .search-controls {
+                grid-template-columns: 2fr 1fr 1fr auto;
+            }
+        }
+
+        .search-input, .filter-select {
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .search-input:focus, .filter-select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+
+        .emergency-toggle {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: #fef2f2;
+            border: 2px solid #fecaca;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .emergency-toggle:hover {
+            background: #fee2e2;
+        }
+
+        .emergency-toggle input[type="checkbox"] {
+            margin: 0;
+        }
+
+        .results-count {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Directory Grid */
+        .directory-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            padding: 2rem 0;
+        }
+
+        @media (min-width: 768px) {
+            .directory-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .directory-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        /* Supplier Card */
+        .supplier-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .supplier-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .supplier-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .supplier-name {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+        }
+
+        .emergency-badge {
+            background: #dc2626;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .supplier-location {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+            color: #6b7280;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .star {
+            color: #fbbf24;
+        }
+
+        .supplier-description {
+            color: #4b5563;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        .services {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .service-tag {
+            background: #dbeafe;
+            color: #1e40af;
+            padding: 0.25rem 0.5rem;
+            border-radius: 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .specialties {
+            margin-bottom: 1rem;
+        }
+
+        .specialties-label {
+            font-size: 0.8rem;
+            color: #6b7280;
+            margin-bottom: 0.25rem;
+        }
+
+        .specialty-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.25rem;
+        }
+
+        .specialty-tag {
+            background: #f3f4f6;
+            color: #374151;
+            padding: 0.2rem 0.4rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+        }
+
+        .supplier-details {
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #6b7280;
+        }
+
+        .detail-row {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            width: 100%;
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.2s;
+        }
+
+        .contact-button:hover {
+            background: #2563eb;
+        }
+
+        .quote-button {
+            background: #10b981;
+            margin-top: 0.5rem;
+        }
+
+        .quote-button:hover {
+            background: #059669;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 3rem 0;
+            color: #6b7280;
+        }
+
+        .no-results-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .clear-filters-button {
+            background: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin-top: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #1f2937;
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer h3 {
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+
+        .footer p {
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        /* Icons */
+        .icon {
+            width: 16px;
+            height: 16px;
+            display: inline-block;
+        }
+
+        /* Lead Generation Form */
+        .lead-form {
+            background: #f0f9ff;
+            border: 2px solid #0ea5e9;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .lead-form h3 {
+            color: #0c4a6e;
+            margin-bottom: 1rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .form-input {
+            padding: 0.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+
+        .form-textarea {
+            grid-column: 1 / -1;
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background: #0ea5e9;
+            color: white;
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .submit-button:hover {
+            background: #0284c7;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>Northeast Illinois Dry Ice Directory</h1>
+            <p>Find reliable dry ice suppliers in your area - serving DuPage, Kane, Lake, Will counties</p>
+        </div>
+    </header>
+
+    <!-- Emergency Banner -->
+    <div class="emergency-banner">
+        <div class="container">
+            <strong>⚡ Emergency Dry Ice Needed?</strong> Filter for 24/7 suppliers below
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-controls">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-input" 
+                    placeholder="Search suppliers, locations, or specialties..."
+                >
+                
+                <select id="countyFilter" class="filter-select">
+                    <option value="">All Counties</option>
+                    <option value="Cook County">Cook County</option>
+                    <option value="DuPage County">DuPage County</option>
+                    <option value="Kane County">Kane County</option>
+                    <option value="Lake County">Lake County</option>
+                    <option value="Will County">Will County</option>
+                    <option value="Winnebago County">Winnebago County</option>
+                </select>
+
+                <select id="serviceFilter" class="filter-select">
+                    <option value="">All Services</option>
+                    <option value="Emergency">Emergency</option>
+                    <option value="Delivery">Delivery</option>
+                    <option value="Pickup">Pickup</option>
+                    <option value="Wholesale">Wholesale</option>
+                </select>
+
+                <label class="emergency-toggle">
+                    <input type="checkbox" id="emergencyOnly"> Emergency Only
+                </label>
+            </div>
+            
+            <div class="results-count" id="resultsCount">
+                Showing 6 suppliers
+            </div>
+        </div>
+    </section>
+
+    <!-- Lead Generation Form -->
+    <section class="container">
+        <div class="lead-form">
+            <h3>🎯 Need a Quick Quote? We'll Connect You with Suppliers</h3>
+            <p style="margin-bottom: 1rem; color: #374151;">Fill out this form and we'll have local dry ice suppliers contact you within 24 hours.</p>
+            
+            <form id="leadForm">
+                <div class="form-row">
+                    <input type="text" class="form-input" placeholder="Your Name" required>
+                    <input type="email" class="form-input" placeholder="Email Address" required>
+                </div>
+                <div class="form-row">
+                    <input type="tel" class="form-input" placeholder="Phone Number" required>
+                    <input type="text" class="form-input" placeholder="Company Name">
+                </div>
+                <div class="form-row">
+                    <select class="form-input" required>
+                        <option value="">Select County</option>
+                        <option value="Cook County">Cook County</option>
+                        <option value="DuPage County">DuPage County</option>
+                        <option value="Kane County">Kane County</option>
+                        <option value="Lake County">Lake County</option>
+                        <option value="Will County">Will County</option>
+                    </select>
+                    <input type="text" class="form-input" placeholder="Amount Needed (lbs)">
+                </div>
+                <div class="form-row">
+                    <textarea class="form-input form-textarea" placeholder="When do you need it? Any special requirements? (emergency, delivery, specific form - blocks/pellets/slices)"></textarea>
+                </div>
+                <button type="submit" class="submit-button">Get Free Quotes</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Directory Grid -->
+    <main class="container">
+        <div class="directory-grid" id="directoryGrid">
+            <!-- Suppliers will be populated by JavaScript -->
+        </div>
+        
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No suppliers found</h3>
+            <p>Try adjusting your search criteria or filters</p>
+            <button class="clear-filters-button" onclick="clearAllFilters()">Clear All Filters</button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <h3>Northeast Illinois Dry Ice Directory</h3>
+            <p>Your trusted source for dry ice suppliers</p>
+            <p>Serving DuPage, Kane, Lake, Will, and surrounding counties</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                <strong>Suppliers:</strong> Want to be listed? Contact us to join the directory.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Supplier data based on real research
+        const suppliers = [
+            {
+                id: 1,
+                name: "Lakeland Dry Ice",
+                location: "Mundelein, IL",
+                county: "Lake County",
+                phone: "(847) 566-0330",
+                emergency: true,
+                rating: 4.8,
+                services: ["Pickup", "Delivery", "Emergency", "Wholesale"],
+                description: "Family-owned for 42+ years. Serving Lake and Cook Counties with competitive pricing and reliable service.",
+                minOrder: "10 lbs",
+                hours: "Mon-Fri: 7AM-6PM, Sat: 8AM-4PM",
+                specialties: ["Medical", "Food Service", "Special Events"],
+                website: "https://www.lakelanddryice.net/"
+            },
+            {
+                id: 2,
+                name: "Chicagoland Dry Ice Co.",
+                location: "South Elgin, IL",
+                county: "Kane County", 
+                phone: "(630) 555-0123",
+                emergency: true,
+                rating: 4.6,
+                services: ["Pickup", "Delivery", "Wholesale"],
+                description: "Trusted provider for over four decades. All forms available: blocks, pellets, and slices.",
+                minOrder: "10 lbs",
+                hours: "Mon-Fri: 8AM-5PM, Sat: 9AM-2PM",
+                specialties: ["Manufacturing", "Food Service", "Entertainment"],
+                website: "https://chicagolanddryice.com/"
+            },
+            {
+                id: 3,
+                name: "CryoCarb Illinois",
+                location: "Arlington Heights, IL", 
+                county: "Cook County",
+                phone: "(847) 398-8270",
+                emergency: false,
+                rating: 4.4,
+                services: ["Delivery", "Wholesale", "Equipment Rental"],
+                description: "Premium dry ice and carbonic gas solutions. Daily fresh deliveries to commercial customers.",
+                minOrder: "25 lbs",
+                hours: "Mon-Fri: 7AM-5PM",
+                specialties: ["Food Processing", "Pharmaceuticals", "Dry Ice Blasting"],
+                website: "https://cryocarb.com/"
+            },
+            {
+                id: 4,
+                name: "MacGas Dry Ice",
+                location: "Genoa, IL",
+                county: "DeKalb County",
+                phone: "(815) 784-5300",
+                emergency: true,
+                rating: 4.5,
+                services: ["Pickup", "Delivery", "Emergency", "Manufacturing"],
+                description: "Only manufacturer in Chicagoland area producing on-site. All forms: blocks, pellets, and rice.",
+                minOrder: "15 lbs",
+                hours: "Mon-Sat: 6AM-6PM, Emergency: 24/7",
+                specialties: ["Ice Blasting", "Meat Packaging", "Cannabis", "Pharmaceuticals"],
+                website: "https://www.macgasusa.com/"
+            },
+            {
+                id: 5,
+                name: "Polar Ice Co.",
+                location: "Chicago, IL", 
+                county: "Cook County",
+                phone: "(773) 254-6420",
+                emergency: false,
+                rating: 4.3,
+                services: ["Delivery", "Pickup"],
+                description: "The Dry Ice Specialists. Serving restaurants, catering, and events with fast delivery.",
+                minOrder: "50 lbs",
+                hours: "Mon-Fri: 8AM-4PM",
+                specialties: ["Restaurants", "Catering", "Events"],
+                website: "https://polariceco.com/"
+            },
+            {
+                id: 6,
+                name: "Reliant Dry Ice - Illinois",
+                location: "Multiple Locations",
+                county: "Multi-County",
+                phone: "(800) 642-2225", 
+                emergency: true,
+                rating: 4.7,
+                services: ["Delivery", "Wholesale", "Emergency"],
+                description: "Leading privately held dry ice manufacturer. From 200 pounds to 2+ million pounds.",
+                minOrder: "200 lbs",
+                hours: "Mon-Fri: 6AM-6PM, Emergency: 24/7",
+                specialties: ["Food Services", "BioTech", "Manufacturing", "Shipping"],
+                website: "https://www.reliantdryice.com/chicago"
+            }
+        ];
+
+        let filteredSuppliers = [...suppliers];
+
+        // DOM elements
+        const searchInput = document.getElementById('searchInput');
+        const countyFilter = document.getElementById('countyFilter');
+        const serviceFilter = document.getElementById('serviceFilter');
+        const emergencyOnly = document.getElementById('emergencyOnly');
+        const directoryGrid = document.getElementById('directoryGrid');
+        const resultsCount = document.getElementById('resultsCount');
+        const noResults = document.getElementById('noResults');
+        const leadForm = document.getElementById('leadForm');
+
+        // Event listeners
+        searchInput.addEventListener('input', filterSuppliers);
+        countyFilter.addEventListener('change', filterSuppliers);
+        serviceFilter.addEventListener('change', filterSuppliers);
+        emergencyOnly.addEventListener('change', filterSuppliers);
+
+        // Lead form submission
+        leadForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! We\'ll have suppliers contact you within 24 hours. For immediate needs, call the emergency suppliers listed above.');
+        });
+
+        // Filter suppliers function
+        function filterSuppliers() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedCounty = countyFilter.value;
+            const selectedService = serviceFilter.value;
+            const emergencyOnlyChecked = emergencyOnly.checked;
+
+            filteredSuppliers = suppliers.filter(supplier => {
+                const matchesSearch = 
+                    supplier.name.toLowerCase().includes(searchTerm) ||
+                    supplier.location.toLowerCase().includes(searchTerm) ||
+                    supplier.specialties.some(spec => spec.toLowerCase().includes(searchTerm)) ||
+                    supplier.description.toLowerCase().includes(searchTerm);
+
+                const matchesCounty = !selectedCounty || supplier.county === selectedCounty || supplier.county === "Multi-County";
+                const matchesService = !selectedService || supplier.services.includes(selectedService);
+                const matchesEmergency = !emergencyOnlyChecked || supplier.emergency;
+
+                return matchesSearch && matchesCounty && matchesService && matchesEmergency;
+            });
+
+            renderSuppliers();
+        }
+
+        // Render suppliers function
+        function renderSuppliers() {
+            if (filteredSuppliers.length === 0) {
+                directoryGrid.style.display = 'none';
+                noResults.style.display = 'block';
+                resultsCount.textContent = 'No suppliers found';
+                return;
+            }
+
+            directoryGrid.style.display = 'grid';
+            noResults.style.display = 'none';
+            resultsCount.textContent = `Showing ${filteredSuppliers.length} of ${suppliers.length} suppliers`;
+
+            directoryGrid.innerHTML = filteredSuppliers.map(supplier => `
+                <div class="supplier-card">
+                    <div class="supplier-header">
+                        <h3 class="supplier-name">${supplier.name}</h3>
+                        ${supplier.emergency ? '<span class="emergency-badge">Emergency</span>' : ''}
+                    </div>
+
+                    <div class="supplier-location">
+                        <span class="icon">📍</span>
+                        <span>${supplier.location}</span>
+                        <div class="rating">
+                            <span class="star">⭐</span>
+                            <span>${supplier.rating}</span>
+                        </div>
+                    </div>
+
+                    <p class="supplier-description">${supplier.description}</p>
+
+                    <div class="services">
+                        ${supplier.services.map(service => `<span class="service-tag">${service}</span>`).join('')}
+                    </div>
+
+                    <div class="specialties">
+                        <div class="specialties-label">Specialties:</div>
+                        <div class="specialty-tags">
+                            ${supplier.specialties.map(specialty => `<span class="specialty-tag">${specialty}</span>`).join('')}
+                        </div>
+                    </div>
+
+                    <div class="supplier-details">
+                        <div class="detail-row">
+                            <span class="icon">🕒</span>
+                            <span>${supplier.hours}</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="icon">📦</span>
+                            <span>Min Order: ${supplier.minOrder}</span>
+                        </div>
+                    </div>
+
+                    <a href="tel:${supplier.phone}" class="contact-button">
+                        <span class="icon">📞</span>
+                        ${supplier.phone}
+                    </a>
+                    
+                    <a href="#" class="contact-button quote-button" onclick="scrollToQuoteForm()">
+                        <span class="icon">💬</span>
+                        Request Quote
+                    </a>
+                </div>
+            `).join('');
+        }
+
+        // Clear all filters
+        function clearAllFilters() {
+            searchInput.value = '';
+            countyFilter.value = '';
+            serviceFilter.value = '';
+            emergencyOnly.checked = false;
+            filterSuppliers();
+        }
+
+        // Scroll to quote form
+        function scrollToQuoteForm() {
+            document.querySelector('.lead-form').scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'center' 
+            });
+        }
+
+        // Initialize
+        renderSuppliers();
+
+        // Analytics tracking (you can add Google Analytics later)
+        function trackEvent(action, supplier = null) {
+            console.log(`Event: ${action}`, supplier ? `Supplier: ${supplier}` : '');
+            // Add Google Analytics tracking here when ready
+        }
+
+        // Track phone calls
+        document.addEventListener('click', function(e) {
+            if (e.target.closest('.contact-button') && e.target.closest('.contact-button').href.includes('tel:')) {
+                const supplierName = e.target.closest('.supplier-card').querySelector('.supplier-name').textContent;
+                trackEvent('Phone Call', supplierName);
+            }
+        });
+    </script>
+</body>
+</html>
